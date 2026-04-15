@@ -1,0 +1,376 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.app{padding:16px 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{padding:6px 14px;border-radius:20px;border:1px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:pointer;font-size:13px;transition:all .15s}
+.tab.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+.section{display:none}
+.section.active{display:block}
+.card{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.card-header{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+.card-header:hover{background:var(--color-background-tertiary)}
+.badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500;white-space:nowrap}
+.b-alu{background:#E6F1FB;color:#0C447C}
+.b-mem{background:#E1F5EE;color:#085041}
+.b-ctrl{background:#FAEEDA;color:#633806}
+.b-io{background:#FBEAF0;color:#72243E}
+.b-reg{background:#EEEDFE;color:#3C3489}
+.b-new{background:#FAECE7;color:#993C1D}
+@media(prefers-color-scheme:dark){
+.b-alu{background:#0C447C;color:#B5D4F4}
+.b-mem{background:#085041;color:#9FE1CB}
+.b-ctrl{background:#633806;color:#FAC775}
+.b-io{background:#72243E;color:#F4C0D1}
+.b-reg{background:#3C3489;color:#CECBF6}
+.b-new{background:#993C1D;color:#F5C4B3}
+}
+.mono{font-family:var(--font-mono);font-size:12px;background:var(--color-background-tertiary);padding:2px 6px;border-radius:4px;color:var(--color-text-secondary)}
+.card-body{padding:0 14px 14px;display:none}
+.card-body.open{display:block}
+.instr-title{font-size:14px;font-weight:500;flex:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pill{padding:3px 8px;border-radius:6px;font-size:12px;background:var(--color-background-tertiary);color:var(--color-text-secondary)}
+.note-box{background:var(--color-background-tertiary);border-left:3px solid #7F77DD;border-radius:0 8px 8px 0;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.warn-box{background:var(--color-background-tertiary);border-left:3px solid #EF9F27;border-radius:0 8px 8px 0;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.good-box{background:var(--color-background-tertiary);border-left:3px solid #1D9E75;border-radius:0 8px 8px 0;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.arrow{font-size:13px;color:var(--color-text-tertiary);margin-left:auto;transition:transform .2s}
+.arrow.open{transform:rotate(90deg)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.compare-table th{text-align:left;padding:8px 10px;background:var(--color-background-tertiary);font-weight:500;font-size:12px}
+.compare-table td{padding:7px 10px;border-top:1px solid var(--color-border-tertiary);vertical-align:top;line-height:1.5}
+.compare-table tr:hover td{background:var(--color-background-tertiary)}
+.yes{color:#1D9E75;font-weight:500}
+.no{color:#E24B4A;font-weight:500}
+.q-card{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:12px;padding:14px;margin-bottom:10px}
+.q-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.q-text{font-size:14px;font-weight:500;margin-bottom:8px;line-height:1.5}
+.q-ans{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.section-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--color-border-tertiary);text-transform:uppercase;letter-spacing:.04em}
+</style>
+
+<div class="app">
+<div class="tabs">
+  <div class="tab active" onclick="showTab('alu')">ALU Operations</div>
+  <div class="tab" onclick="showTab('mem')">Data Transfer</div>
+  <div class="tab" onclick="showTab('ctrl')">Control</div>
+  <div class="tab" onclick="showTab('io')">I/O</div>
+  <div class="tab" onclick="showTab('reg')">Reg-Ref</div>
+  <div class="tab" onclick="showTab('compare')">BC vs Ours</div>
+  <div class="tab" onclick="showTab('hod')">HOD Questions</div>
+</div>
+
+<!-- ALU -->
+<div class="section active" id="tab-alu">
+<div class="section-title">Arithmetic & Logic Unit — Register-to-Register</div>
+</div>
+
+<!-- MEM -->
+<div class="section" id="tab-mem">
+<div class="section-title">Data Transfer — Immediate & Memory</div>
+</div>
+
+<!-- CTRL -->
+<div class="section" id="tab-ctrl">
+<div class="section-title">Program Control — Branches & Halt</div>
+</div>
+
+<!-- IO -->
+<div class="section" id="tab-io">
+<div class="section-title">I/O Instructions — Program-Controlled</div>
+</div>
+
+<!-- REG -->
+<div class="section" id="tab-reg">
+<div class="section-title">Register-Reference Instructions (opcode 11110)</div>
+</div>
+
+<!-- COMPARE -->
+<div class="section" id="tab-compare">
+<div class="section-title">Basic Computer vs Your ISA — Side by Side</div>
+<table class="compare-table">
+<tr><th>Feature</th><th>Basic Computer (Morris Mano)</th><th>Your Custom ISA</th></tr>
+<tr><td>Architecture</td><td>Single accumulator (AC)</td><td>Multi-register (R0–Rn)</td></tr>
+<tr><td>Subtraction</td><td class="no">No SUB — use CMA + INC + ADD (2's complement)</td><td class="yes">SUB Rd, Rs (direct)</td></tr>
+<tr><td>Multiplication</td><td class="no">No MUL — must program with shifts and adds</td><td class="yes">MUL Rd, Rs (lower 16-bit)</td></tr>
+<tr><td>OR operation</td><td class="no">No OR — derive via De Morgan: NOT(AND(NOT a, NOT b))</td><td class="yes">OR Rd, Rs (direct)</td></tr>
+<tr><td>XOR operation</td><td class="no">No XOR — 3-instruction workaround</td><td class="yes">XOR Rd, Rs (direct)</td></tr>
+<tr><td>Dedicated compare</td><td class="no">No CMP — manual subtraction and flag check</td><td class="yes">CMP Rd, Rs (sets Z/C/N flags)</td></tr>
+<tr><td>Shift operations</td><td>CIR / CIL (circular, 1-bit per instr)</td><td class="yes">SHL/SHR #n (arbitrary n)</td></tr>
+<tr><td>Immediate load</td><td class="no">No LDI — requires memory round-trip</td><td class="yes">LDI Rd, #imm (6-bit zero-ext)</td></tr>
+<tr><td>Register-indirect memory</td><td class="no">I-bit indirect (memory address in memory)</td><td class="yes">LDM/STM via register pointer</td></tr>
+<tr><td>Conditional branches</td><td>SPA/SNA/SZA/SZE (skip-next style)</td><td>JZ / JNZ (direct jump)</td></tr>
+<tr><td>Flag control</td><td>CLE only</td><td>CLC/STC/CLZ (carry & zero control)</td></tr>
+<tr><td>Register swap</td><td class="no">Not available</td><td class="yes">SWAP Rd, Rs (via TR temp)</td></tr>
+<tr><td>Instruction width</td><td>16-bit fixed</td><td>Custom (5-bit opcode based)</td></tr>
+<tr><td>I/O model</td><td>Program-controlled (flag polling)</td><td>Program-controlled + IEN interrupt</td></tr>
+</table>
+<div class="note-box" style="margin-top:14px"><strong>Key insight:</strong> Basic Computer is a teaching tool — minimal by design so you can trace every microoperation on paper. Your ISA extends it toward a practical RISC-style design, trading circuit simplicity for programmer productivity and instruction efficiency.</div>
+</div>
+
+<!-- HOD -->
+<div class="section" id="tab-hod">
+<div class="section-title">Likely HOD / Instructor Questions — With Model Answers</div>
+</div>
+
+</div>
+
+<script>
+function showTab(t){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCard(el){
+  const body=el.nextElementSibling;
+  const arrow=el.querySelector('.arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// Instructions data
+const alu=[
+  {op:'ADD Rd, Rs',bin:'00000',cat:'alu',
+   what:'Reads the value in register Rs, adds it to the value in Rd, and writes the result back into Rd. Rs is unchanged.',
+   micro:['MAR ← Rs (read source)', 'ALU: Rd + Rs → result', 'Rd ← result', 'Update Z, C, N flags'],
+   why:'Fundamental arithmetic. Every program needs addition — loops, address computation, counters.',
+   note:'If result exceeds register width, C (carry) flag is set. Z flag set if result = 0.'},
+  {op:'SUB Rd, Rs',bin:'00001',cat:'alu',
+   what:'Subtracts Rs from Rd and stores result in Rd. Internally implemented as Rd + (NOT Rs + 1) — 2\'s complement subtraction.',
+   micro:['Invert Rs bits', 'Add 1 (2\'s complement negate)', 'ALU: Rd + (−Rs) → result', 'Rd ← result, update flags'],
+   why:'Basic Computer has NO subtraction instruction. You must add it explicitly so programmers don\'t waste 3 instructions (CMA, INC, ADD) every time they subtract.',
+   note:'N flag set if result is negative. Borrow = carry-out of MSB XOR carry-into MSB.'},
+  {op:'MUL Rd, Rs',bin:'00010',cat:'alu',
+   what:'Multiplies Rd × Rs and stores the lower 16 bits of the product in Rd. Upper bits are discarded (no overflow register in this design).',
+   micro:['ALU: Rd × Rs → 32-bit product', 'Rd ← lower 16 bits', 'Upper 16 bits discarded'],
+   why:'Basic Computer requires a subroutine using shift-and-add loops just to multiply. MUL saves dozens of instructions for DSP, graphics, and math-heavy programs.',
+   note:'IMPORTANT trade-off: discarding upper bits means you lose overflow silently. A HOD may ask how to handle full 32-bit product — answer: add a MULH instruction or a result register in future revision.'},
+  {op:'AND Rd, Rs',bin:'00011',cat:'alu',
+   what:'Performs bitwise AND of Rd and Rs, stores result in Rd. Each output bit is 1 only if BOTH input bits are 1.',
+   micro:['ALU: Rd AND Rs → result','Rd ← result','Update Z flag'],
+   why:'Masking bits — e.g., isolate lower 4 bits: AND R0, 0x000F. Also in Basic Computer but only with memory, not register-to-register.'},
+  {op:'OR Rd, Rs',bin:'00100',cat:'alu',
+   what:'Bitwise OR of Rd and Rs — output bit is 1 if EITHER input bit is 1. Basic Computer has no OR instruction.',
+   micro:['ALU: Rd OR Rs → result','Rd ← result','Update Z flag'],
+   why:'Setting bits, combining flags. Without OR, programmer must use De Morgan: NOT(AND(NOT a, NOT b)) — 5 instructions vs 1.',
+   note:'De Morgan derivation: a OR b = NOT(NOT a AND NOT b). Basic Computer forces this workaround.'},
+  {op:'XOR Rd, Rs',bin:'00101',cat:'alu',
+   what:'Bitwise XOR — output is 1 where inputs DIFFER. Used for toggling bits, checking equality, and simple encryption/checksums.',
+   micro:['ALU: Rd XOR Rs → result','Rd ← result','Update Z flag'],
+   why:'XOR R0, R0 clears a register in one instruction (self-XOR = 0). Also fundamental for parity checks and CRC computations. No equivalent in Basic Computer.',
+   note:'Classic trick: XOR swap — a^=b; b^=a; a^=b — swaps two values with no temp register (though your ISA has SWAP, so this is just educational).'},
+  {op:'MOV Rd, Rs',bin:'00110',cat:'alu',
+   what:'Copies the value of Rs into Rd. Rs is unchanged. This is a register-to-register copy, no memory involved.',
+   micro:['Rd ← Rs (direct bus transfer)'],
+   why:'Saving register values before subroutine calls, initializing registers. Basic Computer has no MOV — you\'d load from memory which is much slower.'},
+  {op:'CMP Rd, Rs',bin:'00111',cat:'alu',
+   what:'Computes Rd − Rs but does NOT write the result back. Only the flags (Z, C, N) are updated. Used before conditional branches.',
+   micro:['ALU: Rd − Rs (discard result)','Update Z=1 if equal','Update N=1 if Rd < Rs','Update C for borrow'],
+   why:'Separates comparison from data modification. Basic Computer uses SPA/SNA/SZA by loading a value into AC — no dedicated compare.',
+   note:'Z=1 → equal. N=1 → negative (Rd < Rs for signed). Use CMP then JZ/JNZ for if-else logic.'},
+  {op:'NOT Rd',bin:'01000',cat:'alu',
+   what:'Inverts every bit of Rd (1→0, 0→1). One-operand instruction — Rs not used.',
+   micro:['ALU: NOT Rd → result','Rd ← result','Update Z flag'],
+   why:'Part of 2\'s complement negation (NOT + INC = negate). Also used in bitmask creation.'},
+  {op:'INC Rd',bin:'01001',cat:'alu',
+   what:'Adds 1 to Rd. Equivalent to ADD Rd, #1 but more compact — no need to specify a literal register holding 1.',
+   micro:['ALU: Rd + 1 → result','Rd ← result','Update Z, C flags'],
+   why:'Loop counters, pointer increments. Basic Computer has INC too — this is a direct carry-over.'},
+  {op:'DEC Rd',bin:'01010',cat:'alu',
+   what:'Subtracts 1 from Rd. Used for countdown loops and stack pointer management.',
+   micro:['ALU: Rd − 1 → result','Rd ← result','Update Z, N flags'],
+   why:'DEC + JNZ is the canonical loop termination pattern. Basic Computer has no DEC.'},
+  {op:'SHL Rd, #n',bin:'01011',cat:'alu',
+   what:'Shifts Rd left by n bit positions. Each left shift = multiply by 2. Zeros fill from the right. n comes from IR[3:0].',
+   micro:['Read n from IR[3:0]','ALU: Rd << n','Rd ← result','MSBs shifted out → C flag'],
+   why:'Fast multiplication by powers of 2. Basic Computer only has CIL (circular left, 1 bit at a time) — SHL with n=4 replaces 4 CIL instructions.',
+   note:'SHL by n = multiply by 2ⁿ (if no overflow). Used in address scaling, bit packing.'},
+  {op:'SHR Rd, #n',bin:'01100',cat:'alu',
+   what:'Logical right shift by n positions. Zeros fill from the left. Each right shift = divide by 2 (unsigned).',
+   micro:['Read n from IR[3:0]','ALU: Rd >> n (logical)','Rd ← result','LSBs shifted out → C'],
+   why:'Division by powers of 2, extracting bit fields. "Logical" means sign bit is NOT preserved — use for unsigned values.',
+   note:'Logical vs Arithmetic shift: logical fills 0s from left; arithmetic fills sign-bit copies. Your ISA only has logical — HOD may ask about signed division.'},
+];
+
+const mem=[
+  {op:'LDI Rd, #imm',bin:'01101',cat:'mem',
+   what:'Loads a 6-bit immediate constant (from IR[5:0]) directly into Rd. Zero-extended to full register width.',
+   micro:['imm ← IR[5:0]','Rd ← zero_extend(imm)'],
+   why:'Load a small constant without going to memory — e.g., LDI R0, #5 initializes a counter instantly. Basic Computer has NO immediate load — you must store constants in memory first.',
+   note:'6-bit range = 0 to 63. For larger constants, use LDM from a memory constant table.'},
+  {op:'LDM Rd, [Rs]',bin:'01110',cat:'mem',
+   what:'Register-indirect load. AR ← Rs reads the address from Rs, then DR ← M[AR] fetches from memory, then Rd ← DR stores into destination.',
+   micro:['AR ← Rs','DR ← M[AR]  (memory read cycle)','Rd ← DR'],
+   why:'Pointer dereferencing — essential for arrays, linked lists, stack operations. Basic Computer uses the I-bit (indirect mode via memory address in memory), which is slower and harder to program.',
+   note:'This IS the pointer operation. If Rs = 0x0050, then Rd gets the value stored at memory address 0x0050.'},
+  {op:'STM [Rd], Rs',bin:'01111',cat:'mem',
+   what:'Register-indirect store. AR ← Rd (address from register), then M[AR] ← Rs (write source register value to that memory address).',
+   micro:['AR ← Rd','M[AR] ← Rs  (memory write cycle)'],
+   why:'Writing computed results back to memory — array element write, stack push, variable storage.',
+   note:'Note operand order: [Rd] is the ADDRESS, Rs is the VALUE. Common mistake in assembly is swapping these.'},
+];
+
+const ctrl=[
+  {op:'JMP addr',bin:'10000',cat:'ctrl',
+   what:'Unconditional jump. PC ← IR[8:0] loads the lower 9 bits of the instruction register directly into the Program Counter.',
+   micro:['PC ← IR[8:0]'],
+   why:'Goto — for infinite loops, skipping code blocks. Basic Computer has BUN (branch unconditionally) — this is the same concept.',
+   note:'9-bit address = 512 addressable locations. Limit! HOD may ask how to jump further — answer: paged addressing or wider instruction format.'},
+  {op:'JZ Rd, addr',bin:'10001',cat:'ctrl',
+   what:'Jump if zero. Reads Rd, and if Rd = 0, sets PC ← IR[5:0]. Otherwise continues to next instruction.',
+   micro:['Check: Rd = 0?','If yes: PC ← IR[5:0]','If no: PC ← PC + 1'],
+   why:'Implements if (x == 0) and while (x != 0) loop exit. Basic Computer uses SZA (skip-if-AC-zero) which only skips one instruction — JZ is more powerful.',
+   note:'Typical use: DEC R1; JZ R1, exit_loop — this is the standard countdown loop pattern.'},
+  {op:'JNZ Rd, addr',bin:'10010',cat:'ctrl',
+   what:'Jump if not zero. If Rd ≠ 0, PC ← IR[5:0]. Otherwise falls through.',
+   micro:['Check: Rd ≠ 0?','If yes: PC ← IR[5:0]','If no: PC ← PC + 1'],
+   why:'Loop-back: INC R0; JNZ R0, loop — keeps looping until R0 wraps to 0. Used for for-loops and while-true loops.',
+   note:'Combined CMP + JZ = if-equal branch. Combined CMP + JNZ = if-not-equal branch.'},
+  {op:'HLT',bin:'10011',cat:'ctrl',
+   what:'Halts the computer by clearing the start/stop flip-flop S ← 0. CPU stops fetching and executing instructions.',
+   micro:['S ← 0  (stop flip-flop cleared)','Clock gating or idle loop'],
+   why:'Marks end of program. Without HLT, CPU would continue fetching garbage from memory. Basic Computer has HLT too.'},
+];
+
+const io=[
+  {op:'INP',bin:'10100',cat:'io',
+   what:'Input character. Reads 8-bit character from INPR (input register) into R0, then clears FGI (input flag) to signal the I/O device that data was read.',
+   micro:['Check FGI = 1 (use SKI first)','R0 ← INPR','FGI ← 0 (acknowledge)'],
+   why:'Keyboard/serial input. FGI handshaking prevents reading incomplete data.',
+   note:'MUST use SKI before INP — otherwise you read stale data from INPR before new input arrives.'},
+  {op:'OUT',bin:'10101',cat:'io',
+   what:'Output character. Sends R0[7:0] (low byte) to OUTR (output register) and clears FGO to signal device that new data is available.',
+   micro:['Check FGO = 1 (use SKO first)','OUTR ← R0[7:0]','FGO ← 0'],
+   why:'Display/serial output. Standard program-controlled I/O model identical to Basic Computer.'},
+  {op:'SKI',bin:'10110',cat:'io',
+   what:'Skip if input ready. If FGI = 1 (new input available), PC increments by 1 (skips next instruction). Otherwise execute normally.',
+   micro:['If FGI = 1: PC ← PC + 1','Else: continue'],
+   why:'Polling loop: loop: SKI; JMP loop; INP — waits until input is ready then reads it.',
+   note:'This is the polling pattern. Contrast with ION/IOF which use interrupts instead.'},
+  {op:'SKO',bin:'10111',cat:'io',
+   what:'Skip if output ready. If FGO = 1 (device ready to accept data), skip next instruction.',
+   micro:['If FGO = 1: PC ← PC + 1','Else: continue'],
+   why:'Prevents overwriting OUTR before device has processed previous character.'},
+  {op:'ION',bin:'11000',cat:'io',
+   what:'Interrupt enable. Sets IEN ← 1, allowing the interrupt system to trigger on FGI or FGO events.',
+   micro:['IEN ← 1'],
+   why:'Enables interrupt-driven I/O — CPU can do other work and only service I/O when flagged, instead of wasting cycles in polling loops.',
+   note:'After ION, CPU checks IEN at end of each fetch-decode cycle. If FGI or FGO raised and IEN=1, interrupt handler is triggered.'},
+  {op:'IOF',bin:'11001',cat:'io',
+   what:'Interrupt disable. Clears IEN ← 0. Interrupts are masked — CPU ignores I/O flags.',
+   micro:['IEN ← 0'],
+   why:'Critical sections — temporarily block interrupts when executing code that must not be interrupted (e.g., updating shared data structures).'},
+];
+
+const reg=[
+  {op:'CLA',bin:'11110 bit 8',cat:'reg',
+   what:'Clear Accumulator. R0 ← 0. Sets R0 (the conventional accumulator register) to zero without touching any other register.',
+   micro:['R0 ← 0','Z ← 1'],
+   why:'Fast register zeroing. In Basic Computer, CLA clears AC. Here it targets R0 by convention.'},
+  {op:'CMR Rd',bin:'11110 bit 7',cat:'reg',
+   what:'Complement register. Rd ← NOT Rd. Flips every bit of the target register and updates flags. Extended from Basic Computer\'s CMA (complement AC only).',
+   micro:['Rd ← NOT Rd','Update Z, N flags'],
+   why:'Works on any register, not just R0. More flexible than Basic Computer\'s CMA which only targets AC.'},
+  {op:'CLC',bin:'11110 bit 6',cat:'reg',
+   what:'Clear carry flag. C ← 0. Ensures carry is 0 before an addition where you want a fresh start (no residual carry from previous operation).',
+   micro:['C ← 0'],
+   why:'Essential before multi-word addition. If you\'re adding two 32-bit numbers using two 16-bit ADD instructions, you need CLC before the first ADD.'},
+  {op:'STC',bin:'11110 bit 5',cat:'reg',
+   what:'Set carry flag. C ← 1. Forces the carry flag to 1.',
+   micro:['C ← 1'],
+   why:'Borrow simulation, rotating with carry, multi-precision arithmetic initialization.'},
+  {op:'CLZ',bin:'11110 bit 4',cat:'reg',
+   what:'Clear zero flag. Z ← 0. Manually forces the zero flag to 0, regardless of any register value.',
+   micro:['Z ← 0'],
+   why:'Allows code to set a known flag state before a conditional sequence that relies on Z.'},
+  {op:'NOP',bin:'11110 bit 3',cat:'reg',
+   what:'No operation. SC ← 0 immediately — sequence counter resets, no data modified. CPU spends one clock cycle doing nothing.',
+   micro:['SC ← 0 (reset sequence counter)'],
+   why:'Timing padding, placeholder in instruction pipelines, reserved space for future instruction patching.',
+   note:'Not truly "useless" — in real hardware, NOP is used for pipeline bubble insertion, delay slots, and aligned jump targets.'},
+  {op:'SWAP Rd, Rs',bin:'11110 bit 2',cat:'reg',
+   what:'Exchanges values of Rd and Rs using the temp register TR internally: TR←Rd; Rd←Rs; Rs←TR.',
+   micro:['TR ← Rd  (save Rd to temp)','Rd ← Rs','Rs ← TR'],
+   why:'Without SWAP, exchanging two registers requires 3 MOV instructions. Basic Computer has no SWAP. Useful for sorting algorithms (bubble sort, insertion sort).'},
+];
+
+const hod=[
+  {q:'Why does your ISA have SUB when you can derive subtraction using CMA + INC + ADD?',
+   a:'Technically yes, Basic Computer performs subtraction via 2\'s complement: complement the operand (CMA), increment (INC), then add (ADD). But this requires 3 instructions, 3 decode cycles, and intermediate register state. Our SUB does it in 1 instruction with the same hardware — the ALU already supports 2\'s complement internally. This is called instruction orthogonality: adding SUB reduces code size, reduces execution time, and improves programmer productivity with no new hardware cost.'},
+  {q:'Why add MUL? Basic Computer manages without it.',
+   a:'Basic Computer\'s shift-and-add multiplication loop requires approximately 16 iterations for a 16-bit operand, plus loop overhead — roughly 50–80 instructions per multiply. Our MUL reduces this to 1 instruction. The trade-off is hardware cost: a multiplier circuit (e.g., Wallace Tree or Booth\'s algorithm) adds gate area. We consciously chose to extend hardware to save software complexity — a standard RISC vs CISC trade-off decision.'},
+  {q:'What is the trade-off of discarding the upper 16 bits in MUL?',
+   a:'Two 16-bit values multiplied can produce a 32-bit result. Storing only the lower 16 bits risks silent overflow — the programmer gets a wrong answer with no flag raised. The correct fix would be to add a MULH (multiply high) instruction or a dedicated high-result register. This is a known limitation we have documented. Intel x86\'s MUL instruction stores results in DX:AX for exactly this reason.'},
+  {q:'Why did you add OR and XOR when AND is sufficient for all Boolean algebra?',
+   a:'Technically, AND + NOT forms a complete Boolean basis (NAND is universal). But programming OR without a dedicated instruction requires: NOT a → tmp1; NOT b → tmp2; AND tmp1, tmp2 → tmp3; NOT tmp3 → result — 4 instructions. XOR is similarly expensive. In a real assembler, programmers use OR and XOR constantly for bit manipulation, flags, and efficient comparisons. The hardware cost is minimal (OR and XOR gates are primitive).'},
+  {q:'What is the difference between JZ and SZA in Basic Computer?',
+   a:'SZA is a skip instruction — if AC=0, the NEXT instruction is skipped (PC+1). It cannot jump to an arbitrary address. JZ in our ISA jumps directly to IR[5:0] — any address in range. SZA forces an awkward pattern: SZA; JMP somewhere_else; ... Our JZ is more expressive and reduces instruction count for conditional branching.'},
+  {q:'Why use a one-hot encoding for Register-Reference instructions (opcode 11110)?',
+   a:'One-hot means each bit in IR[8:0] corresponds to exactly one register-reference operation. This allows direct hardware decoding — no decoder circuit needed, just wire each IR bit to the corresponding microoperation. It is the same design choice Morris Mano made in Basic Computer. The trade-off is waste: 9 bits = 512 combinations, but we use only 7 (one per bit). For a teaching architecture, simplicity of decoding outweighs encoding efficiency.'},
+  {q:'What is the difference between polling (SKI/SKO) and interrupt-driven I/O (ION/IOF)?',
+   a:'Polling: CPU continuously checks FGI/FGO in a loop — wastes CPU cycles spinning. Simple to implement, predictable latency. Interrupt-driven: CPU sets IEN=1 and does other work; when I/O device sets FGI/FGO, hardware interrupts the CPU, saves state, runs ISR, restores state. Efficient for slow I/O (keyboard, serial), complex to implement. Our ISA supports both — SKI/SKO for polling, ION/IOF for interrupt mode.'},
+  {q:'Why does LDI only support 6-bit immediate values?',
+   a:'Instruction word width constraint. With a 5-bit opcode, only IR[10:0] remains for addressing and data. We allocated IR[5:0] = 6 bits for the immediate, giving range 0–63. This is sufficient for small constants (loop counts, small offsets, ASCII adjustments). For larger constants, the programmer uses LDM to fetch from a constant pool in memory — the standard approach in ARM\'s literal pool mechanism.'},
+  {q:'How does SWAP Rd, Rs work internally without a third programmer-visible register?',
+   a:'SWAP uses TR — the Temp Register — which is a hardware-internal register not visible in the programmer model. The microoperation sequence is: TR←Rd; Rd←Rs; Rs←TR. This takes 3 microoperations but appears atomic to the programmer. Basic Computer uses DR and TR internally for similar purposes. Without TR, SWAP would require the programmer to use a third register, which wastes a register and adds 2 explicit MOV instructions.'},
+  {q:'What makes this a RISC-style design vs the Basic Computer\'s CISC tendency?',
+   a:'RISC characteristics in our ISA: all ALU operations are register-to-register (no memory-to-register ALU ops), memory access only through LDM/STM (load-store architecture), fixed instruction format (5-bit opcode), simple addressing modes. Basic Computer has memory-direct ALU operations (AND, ADD, LDA all reference memory directly) which is CISC-like. Our separation of computation and memory access follows the RISC philosophy of the MIPS/ARM family.'},
+  {q:'What are the reserved opcodes (11111) for?',
+   a:'We deliberately reserved opcode 11111 (4 slots) for future extension. Planned candidates: MULH (multiply high — stores upper 16 bits of product to fix the MUL overflow limitation), DIV, interrupt vector instructions. This is forward compatibility — an important design principle. If we later implement MULH without reserved space, we would have an ISA incompatibility breaking existing programs.'},
+];
+
+// Badge class
+function badgeClass(cat){
+  return {alu:'b-alu',mem:'b-mem',ctrl:'b-ctrl',io:'b-io',reg:'b-reg'}[cat]||'b-alu';
+}
+function badgeLabel(cat){
+  return {alu:'ALU',mem:'Memory',ctrl:'Control',io:'I/O',reg:'Reg-Ref'}[cat]||cat.toUpperCase();
+}
+
+function buildCards(containerId, items){
+  const c=document.getElementById(containerId);
+  if(!c)return;
+  items.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`
+<div class="card-header" onclick="toggleCard(this)">
+  <span class="badge ${badgeClass(item.cat)}">${badgeLabel(item.cat)}</span>
+  <span class="instr-title">${item.op}</span>
+  <span class="mono">${item.bin}</span>
+  <span class="arrow">▶</span>
+</div>
+<div class="card-body">
+  <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:8px"><strong style="color:var(--color-text-primary)">What it does:</strong> ${item.what}</div>
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-tertiary);margin:8px 0 4px">Microoperations</div>
+  <div class="row">${item.micro.map(m=>`<span class="pill mono">${m}</span>`).join('')}</div>
+  <div class="note-box" style="margin-top:10px"><strong>Why we added it:</strong> ${item.why}</div>
+  ${item.note?`<div class="warn-box" style="margin-top:8px"><strong>Key detail:</strong> ${item.note}</div>`:''}
+</div>`;
+    c.appendChild(div);
+  });
+}
+
+function buildHOD(){
+  const c=document.getElementById('tab-hod');
+  hod.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='q-card';
+    div.innerHTML=`
+<div class="q-label">Q${i+1}</div>
+<div class="q-text" style="cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">${item.q} <span style="font-size:12px;color:var(--color-text-tertiary)">(tap for answer)</span></div>
+<div class="q-ans" style="display:none">${item.a}</div>`;
+    c.appendChild(div);
+  });
+}
+
+buildCards('tab-alu', alu);
+buildCards('tab-mem', mem);
+buildCards('tab-ctrl', ctrl);
+buildCards('tab-io', io);
+buildCards('tab-reg', reg);
+buildHOD();
+</script>
