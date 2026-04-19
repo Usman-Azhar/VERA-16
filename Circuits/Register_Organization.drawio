@@ -1,0 +1,220 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="CNLkzatlBXUWuvxDtIeh">
+    <mxGraphModel dx="1374" dy="608" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=20;fontColor=#1F4E79;" value="VERA-16 Register Organization" vertex="1">
+          <mxGeometry height="36" width="900" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#555555;" value="All registers accessible via the 16-bit common bus" vertex="1">
+          <mxGeometry height="20" width="900" x="100" y="54" as="geometry" />
+        </mxCell>
+        <mxCell id="h1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=13;fontColor=#FFFFFF;fillColor=#1F4E79;rounded=1;" value="Register" vertex="1">
+          <mxGeometry height="34" width="140" x="100" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=13;fontColor=#FFFFFF;fillColor=#1F4E79;rounded=1;" value="Size (bits)" vertex="1">
+          <mxGeometry height="34" width="110" x="248" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=13;fontColor=#FFFFFF;fillColor=#1F4E79;rounded=1;" value="Purpose" vertex="1">
+          <mxGeometry height="34" width="634" x="366" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="gp_label" parent="1" style="text;html=1;strokeColor=#2E75B6;fillColor=#DEEAF1;align=left;fontStyle=1;fontSize=12;fontColor=#1F4E79;rounded=0;spacingLeft=8;" value="General-Purpose Register File" vertex="1">
+          <mxGeometry height="26" width="900" x="100" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="r0n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R0" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="r0b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="r0p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose. I/O convention register (INP loads here, OUT reads from here)" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="r1n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R1" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="191" as="geometry" />
+        </mxCell>
+        <mxCell id="r1b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="191" as="geometry" />
+        </mxCell>
+        <mxCell id="r1p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="191" as="geometry" />
+        </mxCell>
+        <mxCell id="r2n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R2" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="229" as="geometry" />
+        </mxCell>
+        <mxCell id="r2b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="229" as="geometry" />
+        </mxCell>
+        <mxCell id="r2p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="229" as="geometry" />
+        </mxCell>
+        <mxCell id="r3n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R3" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="267" as="geometry" />
+        </mxCell>
+        <mxCell id="r3b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="267" as="geometry" />
+        </mxCell>
+        <mxCell id="r3p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="267" as="geometry" />
+        </mxCell>
+        <mxCell id="r4n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R4" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="r4b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="r4p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="r5n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R5" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="r5b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="r5p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="r6n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R6" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="381" as="geometry" />
+        </mxCell>
+        <mxCell id="r6b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="381" as="geometry" />
+        </mxCell>
+        <mxCell id="r6p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF3FB;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="381" as="geometry" />
+        </mxCell>
+        <mxCell id="r7n" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DEEAF1;strokeColor=#2E75B6;align=center;fontStyle=1;fontSize=13;" value="R7" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="419" as="geometry" />
+        </mxCell>
+        <mxCell id="r7b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="419" as="geometry" />
+        </mxCell>
+        <mxCell id="r7p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E75B6;align=left;fontSize=12;spacingLeft=8;" value="General-purpose" vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="419" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrl_label" parent="1" style="text;html=1;strokeColor=#833C00;fillColor=#FCE4D6;align=left;fontStyle=1;fontSize=12;fontColor=#833C00;rounded=0;spacingLeft=8;" value="Control and Internal Registers" vertex="1">
+          <mxGeometry height="26" width="900" x="100" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="pcn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#E07040;align=center;fontStyle=1;fontSize=13;" value="PC" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="491" as="geometry" />
+        </mxCell>
+        <mxCell id="pcb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=center;fontSize=13;" value="12" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="491" as="geometry" />
+        </mxCell>
+        <mxCell id="pcp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=left;fontSize=12;spacingLeft=8;" value="Program Counter — holds address of next instruction to fetch. Incremented at T1." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="491" as="geometry" />
+        </mxCell>
+        <mxCell id="irn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#E07040;align=center;fontStyle=1;fontSize=13;" value="IR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="529" as="geometry" />
+        </mxCell>
+        <mxCell id="irb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E07040;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="529" as="geometry" />
+        </mxCell>
+        <mxCell id="irp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E07040;align=left;fontSize=12;spacingLeft=8;" value="Instruction Register — holds the current instruction. Fields decoded at T2 by control unit." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="529" as="geometry" />
+        </mxCell>
+        <mxCell id="arn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#E07040;align=center;fontStyle=1;fontSize=13;" value="AR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="arb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=center;fontSize=13;" value="12" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="arp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=left;fontSize=12;spacingLeft=8;" value="Address Register — holds memory address during fetch and memory operations (LDM, STM)." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="567" as="geometry" />
+        </mxCell>
+        <mxCell id="drn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#E07040;align=center;fontStyle=1;fontSize=13;" value="DR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="drb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E07040;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="drp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E07040;align=left;fontSize=12;spacingLeft=8;" value="Data Register — temporary buffer for memory read results. Loaded from M[AR], then forwarded to RF[DST]." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="trn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#E07040;align=center;fontStyle=1;fontSize=13;" value="TR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="trb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=center;fontSize=13;" value="16" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="trp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDE9D9;strokeColor=#E07040;align=left;fontSize=12;spacingLeft=8;" value="Temporary Register — used by SWAP instruction and interrupt cycle to save PC value." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="io_label" parent="1" style="text;html=1;strokeColor=#375623;fillColor=#E2EFDA;align=left;fontStyle=1;fontSize=12;fontColor=#375623;rounded=0;spacingLeft=8;" value="I/O Registers and Flip-Flops" vertex="1">
+          <mxGeometry height="26" width="900" x="100" y="689" as="geometry" />
+        </mxCell>
+        <mxCell id="inprn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#70AD47;align=center;fontStyle=1;fontSize=13;" value="INPR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="inprb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF5E1;strokeColor=#70AD47;align=center;fontSize=13;" value="8" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="inprp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF5E1;strokeColor=#70AD47;align=left;fontSize=12;spacingLeft=8;" value="Input Register — holds 8-bit character received from input device. Read by INP instruction into R0." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="outrn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#70AD47;align=center;fontStyle=1;fontSize=13;" value="OUTR" vertex="1">
+          <mxGeometry height="38" width="140" x="100" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="outrb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#70AD47;align=center;fontSize=13;" value="8" vertex="1">
+          <mxGeometry height="38" width="110" x="248" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="outrp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#70AD47;align=left;fontSize=12;spacingLeft=8;" value="Output Register — holds 8-bit character sent to output device. Written by OUT instruction from R0[7:0]." vertex="1">
+          <mxGeometry height="38" width="634" x="366" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="flags_label" parent="1" style="text;html=1;strokeColor=#7030A0;fillColor=#EAD1F5;align=left;fontStyle=1;fontSize=12;fontColor=#7030A0;rounded=0;spacingLeft=8;" value="Status Flags and Control Flip-Flops (1-bit each)" vertex="1">
+          <mxGeometry height="26" width="900" x="100" y="799" as="geometry" />
+        </mxCell>
+        <mxCell id="fn1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAD1F5;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="Z" vertex="1">
+          <mxGeometry height="38" width="112" x="100" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FB;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="C" vertex="1">
+          <mxGeometry height="38" width="112" x="212" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAD1F5;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="N" vertex="1">
+          <mxGeometry height="38" width="113" x="324" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FB;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="IEN" vertex="1">
+          <mxGeometry height="38" width="112" x="437" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAD1F5;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="FGI" vertex="1">
+          <mxGeometry height="38" width="112" x="549" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FB;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="FGO" vertex="1">
+          <mxGeometry height="38" width="112" x="661" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAD1F5;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="S" vertex="1">
+          <mxGeometry height="38" width="112" x="773" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fn8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E8FB;strokeColor=#7030A0;align=center;fontStyle=1;fontSize=13;" value="R" vertex="1">
+          <mxGeometry height="38" width="115" x="885" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="fd1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Zero flag" vertex="1">
+          <mxGeometry height="20" width="112" x="100" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Carry flag" vertex="1">
+          <mxGeometry height="20" width="112" x="212" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Negative flag" vertex="1">
+          <mxGeometry height="20" width="113" x="324" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Interrupt enable" vertex="1">
+          <mxGeometry height="20" width="112" x="437" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Input ready" vertex="1">
+          <mxGeometry height="20" width="112" x="549" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd6" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Output ready" vertex="1">
+          <mxGeometry height="20" width="112" x="661" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd7" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Start/Stop" vertex="1">
+          <mxGeometry height="20" width="112" x="773" y="863" as="geometry" />
+        </mxCell>
+        <mxCell id="fd8" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#7030A0;" value="Interrupt request" vertex="1">
+          <mxGeometry height="20" width="115" x="885" y="863" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
